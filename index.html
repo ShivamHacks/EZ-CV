@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>EZ CV</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link crossorigin rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+	<!-- Main content -->
+	<div ng-app="mainApp" ng-controller="mainCtrl" id="mainContainer">
+		<div id="image-annotation-container">
+			<!-- Image Annotation -->
+			<div id="image-annotation">
+				<canvas id="image-annotation-canvas" width="0" height="0">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+				<img id="image-annotation-image" src="{{ current_img }}"> 
+			</div>
+			<!-- Image carousel -->
+			<div id="image-carousel">
+				<div ng-repeat="img in images" ng-click="setImage(img)" class="img-carousel-item">
+					<img src="{{ img }}" class="img-fluid">
+				</div>
+			</div>
+		</div>
+		<div id="dashboard">
+			
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+
+		var app = angular.module('mainApp', []);
+
+		app.controller('mainCtrl', function($scope, $http) {
+			
+			$scope.images = [
+				'https://www.w3schools.com/howto/img_nature.jpg',
+				'https://www.w3schools.com/howto/img_snow.jpg',
+				'https://www.w3schools.com/howto/img_mountains.jpg',
+				'https://www.w3schools.com/howto/img_lights.jpg'
+			];
+
+			$scope.current_img = $scope.images[0];
+
+			$scope.setImage = function(img) {
+				$scope.current_img = img;
+			}
+
+			// need to keep list of active images, the ones that are displayed
+
+		});
+
+	</script>
+
+</body>
+
+</html>

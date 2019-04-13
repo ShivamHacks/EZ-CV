@@ -1,0 +1,6 @@
+Currently building:
+
+Frontend
+1. image carousel and selector
+2. annotate
+3. get input and be able to send to server

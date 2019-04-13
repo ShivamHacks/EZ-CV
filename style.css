@@ -1,0 +1,78 @@
+html, body {
+	width: calc(100vw);
+	height: calc(100vh);
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+#mainContainer {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+/* Image Annotation */
+
+#image-annotation-container {
+	width: 70%;
+	height: calc(100vh);
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+#image-annotation {
+	width: 100%;
+	height: calc(80vh);
+}
+
+#image-carousel {
+	width: 100%;
+	height: calc(20vh);
+}
+
+#image-annotation-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 70%;
+	height: calc(80vh);
+}
+
+#image-annotation-canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 70%;
+	height: calc(80vh);
+}
+
+.img-carousel-item {
+	width: 25%;
+	padding: 10px;
+	display: inline-block;
+}
+
+/* Dashboard */
+
+#dashboard {
+	width: 30%;
+	height: calc(100vh);
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+/* Custom Boostrap */
+.row.no-gutters {
+	margin-right: 0;
+	margin-left: 0;
+
+	& > [class^="col-"],
+	& > [class*=" col-"] {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
