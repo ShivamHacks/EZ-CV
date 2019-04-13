@@ -11,6 +11,7 @@ def style(): return send_from_directory('../client/', 'style.css')
 # Search for images
 @app.route('/image_search', methods=['POST'])
 def image_search():
+	print('image search query:')
 	print(request)
 	return 'all good'
 
