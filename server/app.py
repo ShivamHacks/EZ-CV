@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 
 app = Flask(__name__, static_url_path='/EZ-CV/client')
 
