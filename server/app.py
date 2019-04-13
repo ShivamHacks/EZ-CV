@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask, request, send_from_directory
 
 app = Flask(__name__, static_url_path='/EZ-CV/client')
 
@@ -10,9 +10,8 @@ def style(): return send_from_directory('../client/', 'style.css')
 
 # Train the model
 @app.route('/train_model')
-def train_model(img_urls, annotations):
-	print(img_urls)
-	print(annotations)
+def train_model():
+	print(request.data)
 	return 'all good'
 
 if __name__ == '__main__':
