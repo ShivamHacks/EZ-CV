@@ -24,10 +24,10 @@
 		<div id="image-annotation-container">
 			<!-- Image Annotation -->
 			<div id="image-annotation">
+				<img id="image-annotation-image" src="{{ current_img }}">
 				<canvas id="image-annotation-canvas" width="0" height="0">
 					Your browser does not support the HTML5 canvas tag.
 				</canvas>
-				<img id="image-annotation-image" src="{{ current_img }}"> 
 			</div>
 			<!-- Image carousel -->
 			<div id="image-carousel">
@@ -41,6 +41,9 @@
 		</div>
 	</div>
 	
+
+	<!-- Javascript -->
+
 	<script type="text/javascript">
 
 		var app = angular.module('mainApp', []);
@@ -62,7 +65,84 @@
 
 			// need to keep list of active images, the ones that are displayed
 
+
+
+			/* Canvas stuff */
+
+			var canvas = document.getElementById('image-annotation-canvas');
+
+			// todo: set correct dimensions
+			canvas.width = canvas.offsetWidth;
+			canvas.height = canvas.offsetHeight;
+			canvas.style.width = canvas.offsetWidth;
+			canvas.style.height = canvas.offsetHeight;
+
+			$scope.canvasCtx = canvas.getContext("2d");
+			$scope.canvasCtxWidth = canvas.width;
+			$scope.canvasCtxHeight = canvas.height;
+			$scope.inDragEvent = false;
+
+			$scope.canvasMouseDown = function(event) {
+				$scope.canvasStartX = event.clientX;
+				$scope.canvasStartY = event.clientY;
+				$scope.inDragEvent = true;
+				console.log('mouse down');
+			}
+
+			$scope.canvasMouseMove = function(event) {
+				$scope.canvasCurrentX = event.clientX;
+				$scope.canvasCurrentY = event.clientY;
+				//if ($scope.inDragEvent) {
+				//	var points = sortPoints($scope.canvasStartX, $scope.canvasStartY, event.clientX, event.clientY);
+				//	drawRectangle(points, $scope.canvasCtx, $scope.canvasCtxWidth, $scope.canvasCtxHeight);
+				//}
+			}
+
+			$scope.canvasMouseUp = function(event) {
+				$scope.inDragEvent = false;
+			}
+
+			document.getElementById("image-annotation-canvas").addEventListener("mousedown", $scope.canvasMouseDown);
+			document.getElementById("image-annotation-canvas").addEventListener("mousemove", $scope.canvasMouseMove);
+			document.getElementById("image-annotation-canvas").addEventListener("mouseup", $scope.canvasMouseUp);
+
+			// set canvas update loop
+			setInterval(function() {
+				if ($scope.inDragEvent) {
+					var points = sortPoints($scope.canvasStartX, $scope.canvasStartY, $scope.canvasCurrentX, $scope.canvasCurrentY);
+					drawRectangle(points, $scope.canvasCtx, $scope.canvasCtxWidth, $scope.canvasCtxHeight);
+				}
+			}, 10);
+
 		});
+
+		// Helper Methods
+
+		function sortPoints(x1, y1, x2, y2) {
+			// sorts x1, y1, x2, y2 to ensure that the two points
+			// returned are the top left and bottom right corners
+			var xmin = x1 < x2 ? x1 : x2;
+			var xmax = x1 > x2 ? x1 : x2;
+			var ymin = y1 < y2 ? y1 : y2;
+			var ymax = y1 > y2 ? y1 : y2;
+			return [xmin, ymin, xmax, ymax];
+		}
+
+		function drawRectangle(points, ctx, w, h) {
+			var x1 = points[0];
+			var y1 = points[1];
+			var x2 = points[2];
+			var y2 = points[3];
+			// clear canvas
+			ctx.clearRect(0, 0, w, h);
+			// draw current bounding box rectangle
+			ctx.beginPath();
+			ctx.lineWidth = 5;
+			ctx.strokeStyle = "#FF0000";
+			ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+			ctx.stroke();
+			ctx.closePath();
+		}
 
 	</script>
 
