@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		<div id="dashboard">
-
+			<button ng-click="trainModel()">Train</button>
 		</div>
 	</div>
 	
@@ -168,6 +168,23 @@
 					drawRectangle(points, $scope.canvasCtx, $scope.canvasCtxWidth, $scope.canvasCtxHeight);
 				}
 			}, 10);
+
+			/* Train Model - send data to server */
+
+			$scope.serverURL = 'http://35.237.13.210:8080';
+
+			$scope.trainModel = function() {
+
+				$http({
+					method: 'GET',
+					url: $scope.serverURL + '/train_model',
+					data: 'hello'
+				}).then(function successCallback(response) {
+					console.log(response);
+				}, function errorCallback(response) {
+					console.log(response);
+				});
+			}
 
 		});
 

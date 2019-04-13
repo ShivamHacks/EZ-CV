@@ -16,11 +16,23 @@ html, body {
 /* Image Annotation */
 
 #image-annotation-container {
-	width: 70%;
+	width: calc(70vw);
 	height: calc(100vh);
 	margin: 0;
 	padding: 0;
 	display: inline-block;
+}
+
+#dashboard {
+	position: fixed;
+	top: 0;
+	left: calc(70vw);
+	width: calc(30vw);
+	height: calc(100vh);
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	background: red;
 }
 
 #image-annotation {
@@ -76,16 +88,6 @@ html, body {
 	left: calc(70vw - 30px);
 	width: 30px;
 	height: 30px;
-}
-
-/* Dashboard */
-
-#dashboard {
-	width: 30%;
-	height: calc(100vh);
-	margin: 0;
-	padding: 0;
-	display: inline-block;
 }
 
 /* Custom Boostrap */
