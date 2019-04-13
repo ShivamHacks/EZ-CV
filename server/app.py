@@ -1,10 +1,10 @@
 from flask import Flask
 
-app = Flask(__name__, static_url_path='../client')
+app = Flask(__name__, static_url_path='/EZ-CV/client')
 
 @app.route('/')
 def hello_world():
-	return 'Hello World!'
+	return send_from_directory('../client/', 'index.html')
 
 @app.route('/train_model')
 def train_model(img_urls, annotations):
