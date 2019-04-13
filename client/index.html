@@ -194,7 +194,8 @@
 				$http({
 					method: 'POST',
 					url: $scope.serverURL + '/image_search',
-					data: $scope.imageSearchQuery
+					headers: { 'Content-Type': 'application/json' },
+					data: { 'query': $scope.imageSearchQuery }
 				}).then(function successCallback(response) {
 					console.log(response);
 				}, function errorCallback(response) {

@@ -16,6 +16,7 @@ def image_search():
 	print(request.form)
 	print(request.args)
 	print(request.values)
+	print(request.get_json())
 	return 'all good'
 
 # Train the model
