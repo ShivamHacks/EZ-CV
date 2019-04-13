@@ -13,6 +13,7 @@ def style(): return send_from_directory('../client/', 'style.css')
 def image_search():
 	print('image search query:')
 	print(request)
+	print(request.form)
 	return 'all good'
 
 # Train the model
