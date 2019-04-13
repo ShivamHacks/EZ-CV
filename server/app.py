@@ -2,10 +2,13 @@ from flask import Flask, send_from_directory
 
 app = Flask(__name__, static_url_path='/EZ-CV/client')
 
+# Static Files
 @app.route('/')
-def hello_world():
-	return send_from_directory('../client/', 'index.html')
+def index(): return send_from_directory('../client/', 'index.html')
+@app.route('/style.css')
+def style(): return send_from_directory('../client/', 'style.css')
 
+# Train the model
 @app.route('/train_model')
 def train_model(img_urls, annotations):
 	print(img_urls)
