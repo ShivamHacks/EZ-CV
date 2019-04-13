@@ -30,14 +30,16 @@
 				</canvas>
 			</div>
 			<!-- Image carousel -->
-			<div id="image-carousel">
-				<div ng-repeat="img in images" ng-click="setImage(img)" class="img-carousel-item">
+			<div id="image-carousel" class="image-carousel-slick-class">
+				<div ng-repeat="img in active_images" ng-click="setImage(img)" class="img-carousel-item">
 					<img src="{{ img }}" class="img-fluid">
 				</div>
+				<button id="image-carousel-left-arrow" ng-click="moveCarouselLeft()">&#60;</button>
+				<button id="image-carousel-right-arrow" ng-click="moveCarouselRight()">&#62;</button>
 			</div>
 		</div>
 		<div id="dashboard">
-			
+
 		</div>
 	</div>
 	
@@ -49,18 +51,65 @@
 		var app = angular.module('mainApp', []);
 
 		app.controller('mainCtrl', function($scope, $http) {
-			
+
 			$scope.images = [
 				'https://www.w3schools.com/howto/img_nature.jpg',
 				'https://www.w3schools.com/howto/img_snow.jpg',
 				'https://www.w3schools.com/howto/img_mountains.jpg',
-				'https://www.w3schools.com/howto/img_lights.jpg'
+				'https://www.w3schools.com/howto/img_lights.jpg',
+				'https://cdn.pixabay.com/photo/2017/04/09/09/56/avenue-2215317__340.jpg',
+				'https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297__340.jpg',
+				'https://cdn.pixabay.com/photo/2015/12/01/20/28/fall-1072821__340.jpg'
 			];
 
-			$scope.current_img = $scope.images[0];
+			$scope.left_index_bound = 0;
+			$scope.num_images_in_carousel = 4;
+
+			// should only contain the images in the user's view
+			$scope.active_images = [];
+			// set active images to first four images in list
+			for (var i = 0; i < $scope.num_images_in_carousel; i++) {
+				$scope.active_images[i] = $scope.images[i];
+			}
+
+			$scope.annotations = {}
+
+			$scope.current_img = $scope.active_images[0];
 
 			$scope.setImage = function(img) {
+
+				// clear any current  annotation
+				$scope.canvasCtx.clearRect(0, 0, $scope.canvasCtxWidth, $scope.canvasCtxHeight);
+
+				// change image
 				$scope.current_img = img;
+
+				// overlay annotation if there is one
+				if (img in $scope.annotations) {
+					drawRectangle($scope.annotations[img], $scope.canvasCtx, $scope.canvasCtxWidth, $scope.canvasCtxHeight);
+				}
+			}
+
+			$scope.moveCarouselLeft = function() {
+				// shift visible images 1 left in the array
+				if ($scope.left_index_bound > 0) {
+					$scope.left_index_bound -= 1;
+					// set images to between left index bound and + 4
+					for (var i = $scope.left_index_bound; i < $scope.left_index_bound + $scope.num_images_in_carousel; i++) {
+						$scope.active_images[i - $scope.left_index_bound] = $scope.images[i];
+					}
+				}
+			}
+
+			$scope.moveCarouselRight = function() {
+				// shift visible images 1 right in the array
+				if ($scope.left_index_bound < $scope.images.length - $scope.num_images_in_carousel) {
+					$scope.left_index_bound += 1;
+					// set images to between left index bound and + 4
+					for (var i = $scope.left_index_bound; i < $scope.left_index_bound + $scope.num_images_in_carousel; i++) {
+						$scope.active_images[i - $scope.left_index_bound] = $scope.images[i];
+					}
+				}
 			}
 
 			// need to keep list of active images, the ones that are displayed
@@ -78,28 +127,34 @@
 			canvas.style.height = canvas.offsetHeight;
 
 			$scope.canvasCtx = canvas.getContext("2d");
-			$scope.canvasCtxWidth = canvas.width;
-			$scope.canvasCtxHeight = canvas.height;
+			$scope.canvasCtxWidth = canvas.offsetWidth;
+			$scope.canvasCtxHeight = canvas.offsetHeight;
 			$scope.inDragEvent = false;
+			$scope.annotationSaved = false;
 
 			$scope.canvasMouseDown = function(event) {
 				$scope.canvasStartX = event.clientX;
 				$scope.canvasStartY = event.clientY;
 				$scope.inDragEvent = true;
-				console.log('mouse down');
 			}
 
 			$scope.canvasMouseMove = function(event) {
 				$scope.canvasCurrentX = event.clientX;
 				$scope.canvasCurrentY = event.clientY;
-				//if ($scope.inDragEvent) {
-				//	var points = sortPoints($scope.canvasStartX, $scope.canvasStartY, event.clientX, event.clientY);
-				//	drawRectangle(points, $scope.canvasCtx, $scope.canvasCtxWidth, $scope.canvasCtxHeight);
-				//}
 			}
 
 			$scope.canvasMouseUp = function(event) {
+
 				$scope.inDragEvent = false;
+
+				// save annotation
+				$scope.annotations[$scope.current_img] = [
+					$scope.canvasStartX,
+					$scope.canvasStartY,
+					event.clientX,
+					event.clientY
+				];
+
 			}
 
 			document.getElementById("image-annotation-canvas").addEventListener("mousedown", $scope.canvasMouseDown);

@@ -3,7 +3,7 @@ html, body {
 	height: calc(100vh);
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
+	
 }
 
 #mainContainer {
@@ -53,6 +53,22 @@ html, body {
 	width: 25%;
 	padding: 10px;
 	display: inline-block;
+}
+
+#image-carousel-left-arrow {
+	position: absolute;
+	top: calc(90vh - 15px);
+	left: 0px;
+	width: 30px;
+	height: 30px;
+}
+
+#image-carousel-right-arrow {
+	position: absolute;
+	top: calc(90vh - 15px);
+	left: calc(70vw - 30px);
+	width: 30px;
+	height: 30px;
 }
 
 /* Dashboard */
