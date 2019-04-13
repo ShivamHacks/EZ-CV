@@ -3,7 +3,7 @@ html, body {
 	height: calc(100vh);
 	margin: 0;
 	padding: 0;
-	
+	overflow: hidden;
 }
 
 #mainContainer {
@@ -31,6 +31,10 @@ html, body {
 #image-carousel {
 	width: 100%;
 	height: calc(20vh);
+	display: flex;
+	justify-content: space-around;
+	align-items: stretch;
+	align-content: stretch;
 }
 
 #image-annotation-image {
@@ -50,9 +54,12 @@ html, body {
 }
 
 .img-carousel-item {
-	width: 25%;
-	padding: 10px;
-	display: inline-block;
+	width: calc(25% - 10px);
+	margin: 10px;
+}
+.img-carousel-img {
+	width: 100%;
+	height: 100%;
 }
 
 #image-carousel-left-arrow {

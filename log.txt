@@ -4,3 +4,22 @@ Frontend
 1. image carousel and selector
 2. annotate
 3. get input and be able to send to server
+
+
+googleimagesdownload --keywords "Starbucks Cup" --limit 20 --output_directory /Users/shivamagrawal/Desktop/ScrapedImgs
+
+
+
+
+Google Cloud Instance
+
+Stats:
+
+4 CPUs
+16gb memory
+1 Tesla P100 GPU
+
+Needed to install
+
+pip3
+git

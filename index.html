@@ -30,9 +30,9 @@
 				</canvas>
 			</div>
 			<!-- Image carousel -->
-			<div id="image-carousel" class="image-carousel-slick-class">
+			<div id="image-carousel">
 				<div ng-repeat="img in active_images" ng-click="setImage(img)" class="img-carousel-item">
-					<img src="{{ img }}" class="img-fluid">
+					<img src="{{ img }}" class="img-carousel-img">
 				</div>
 				<button id="image-carousel-left-arrow" ng-click="moveCarouselLeft()">&#60;</button>
 				<button id="image-carousel-right-arrow" ng-click="moveCarouselRight()">&#62;</button>
