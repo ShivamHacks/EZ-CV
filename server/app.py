@@ -26,7 +26,7 @@ def image_search():
 
 	# Delete all images in the image directory
 	old_imgs = glob.glob(img_dir + "*")
-	for f in files: os.remove(f)
+	for f in old_imgs: os.remove(f)
 
 	# Download the new images
 	query = request.get_json()['query']
