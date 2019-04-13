@@ -90,6 +90,15 @@ html, body {
 	height: 30px;
 }
 
+.img-gallery-imgs {
+	width: 25%;
+}
+
+.img-gallery-imgs.img-selected {
+	outline: 1px solid black;
+  	outline-offset: -4px;
+}
+
 /* Custom Boostrap */
 .row.no-gutters {
 	margin-right: 0;

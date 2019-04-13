@@ -39,6 +39,15 @@
 			</div>
 		</div>
 		<div id="dashboard">
+			<input type="text" class="form-control" placeholder="Search" ng-model="imageSearchQuery">
+			<!-- Image Grid -->
+			<div class="row no-gutters">
+				<div ng-repeat="img in imagesFromSearch" ng-click="selectImage(img)" class="col-6">
+					<img src="{{ img }}" class="img-fluid">
+				</div>
+			</div>
+			<button ng-click="searchImages()">Search Images</button>
+			<button ng-click="selectImages()">Select</button>
 			<button ng-click="trainModel()">Train</button>
 		</div>
 	</div>
@@ -169,9 +178,45 @@
 				}
 			}, 10);
 
-			/* Train Model - send data to server */
-
 			$scope.serverURL = 'http://35.237.13.210:8080';
+
+			/* Get images */
+			$scope.imageSearchQuery = "";
+			$scope.imagesFromSearch = [];
+			$scope.selectedImages = [];
+
+			$scope.searchImages = function() {
+
+				if ($scope.imageSearchQuery == "") return;
+
+				$scope.imagesFromSearch = $scope.images;
+
+				$http({
+					method: 'POST',
+					url: $scope.serverURL + '/image_search',
+					data: $scope.imageSearchQuery
+				}).then(function successCallback(response) {
+					console.log(response);
+				}, function errorCallback(response) {
+					console.log(response);
+				});
+
+				$scope.imagesFromSearch = $scope.images;
+			}
+
+			$scope.selectImage = function(img) {
+				if ($scope.selectedImages.includes(img)) {
+					var i = $scope.selectedImages.indexOf(img);
+					$scope.selectedImages.splice(i, 1);
+				} else {
+					$scope.selectedImages.push(img);
+				}
+				console.log($scope.selectedImages);
+			}
+
+
+			/* Train Model - send data to server */
+			// TODO
 
 			$scope.trainModel = function() {
 
