@@ -40,6 +40,9 @@ def image_search():
 		'no_directory': True
 	})
 
+	print('absolute_image_paths')
+	print(absolute_image_paths)
+
 	return jsonify(
 		images = [server_url + os.path.basename(img_path) for img_path in absolute_image_paths[0]]
 	)
