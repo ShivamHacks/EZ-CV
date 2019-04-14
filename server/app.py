@@ -56,11 +56,11 @@ def image_search():
 @app.route('/train_model', methods=['POST'])
 def train_model():
 	annotations = request.get_json()
-	for annotation in annotations:
-		print(annotation.split('http://35.237.13.210:8080/img/')[1])
 	#with open('../keras_frcnn/kitti_simple_label.txt', 'a') as f:
-	#	for annotation in annotations:
-	#		f.write('Hello\n')
+	for img_id, bbox, in annotations.items():
+		img_path = '/home/sagrawa2/EZ-CV/images/' + img_id.split('http://35.237.13.210:8080/img/')[1]
+		print(img_path + ',' + ','.join(map(str, bbox)) + ',bird')
+		# f.write(img_path + ','.join(map(str, myList)) )
 	return jsonify(annotations)
 
 if __name__ == '__main__':
