@@ -175,8 +175,6 @@
 			$scope.imagesFromSearch = [];
 			$scope.selectedImages = [];
 
-			$scope.imagesFromSearch = $scope.images;
-
 			$scope.searchImages = function() {
 
 				if ($scope.imageSearchQuery == "") return;
@@ -194,7 +192,6 @@
 
 				// clear any previous changes
 				$scope.selectedImages = [];
-				$scope.imagesFromSearch = [];
 
 			}
 

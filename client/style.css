@@ -26,8 +26,8 @@ html, body {
 #dashboard {
 	position: fixed;
 	top: 0;
-	left: calc(70vw);
-	width: calc(30vw);
+	left: calc(75vw);
+	width: calc(25vw);
 	height: calc(100vh);
 	margin: 0;
 	padding: 0;
