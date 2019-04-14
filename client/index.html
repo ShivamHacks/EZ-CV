@@ -192,6 +192,10 @@
 					console.log(response);
 				});
 
+				// clear any previous changes
+				$scope.selectedImages = [];
+				$scope.imagesFromSearch = [];
+
 			}
 
 			$scope.selectImage = function(target, img) {
@@ -216,6 +220,7 @@
 					$scope.active_images[i] = $scope.images[i];
 				}
 
+				// clear any previous changes
 				$scope.selectedImages = [];
 				$scope.imagesFromSearch = [];
 				$scope.imageSearchQuery = "";
