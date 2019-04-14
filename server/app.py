@@ -62,13 +62,6 @@ def train_model():
 		for img_id, bbox, in annotations.items():
 			img_path = '/home/sagrawa2/EZ-CV/images/' + img_id.split('http://35.237.13.210:8080/img/')[1]
 			f.write(img_path + ',' + ','.join(map(str, bbox)) + ',bird\n')
-			f.write(img_path + ',' + ','.join(map(str, bbox)) + ',bird\n')
-			f.write(img_path + ',' + ','.join(map(str, bbox)) + ',bird\n')
-			f.write(img_path + ',' + ','.join(map(str, bbox)) + ',bird\n')
-			f.write(img_path + ',' + ','.join(map(str, bbox)) + ',bird\n')
-			f.write(img_path + ',' + ','.join(map(str, bbox)) + ',bird\n')
-			f.write(img_path + ',' + ','.join(map(str, bbox)) + ',bird\n')
-			f.write(img_path + ',' + ','.join(map(str, bbox)) + ',bird\n')
 	os.system('cat ' + file)
 	os.system('python3 ../keras_frcnn/train_frcnn_kitti.py')
 	return jsonify(annotations)

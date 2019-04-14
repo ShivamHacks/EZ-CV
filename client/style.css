@@ -99,7 +99,7 @@ html, body {
 #img-gallery {
 	height: calc(60vh);
 	overflow: scroll;	
-	margin: 10px;
+	margin: 10px 0 0 0;
 }
 
 .img-gallery-img {
