@@ -41,7 +41,7 @@
 			</div>
 		</div>
 		<div id="dashboard">
-			<input type="text" class="form-control" placeholder="Search" ng-model="imageSearchQuery">
+			<input type="text" class="form-control" placeholder="Search" ng-model="imageSearchQuery"><br>
 			<!-- Image Grid -->
 			<div id="img-gallery" class="row no-gutters">
 				<div ng-repeat="img in imagesFromSearch" ng-click="selectImage($event.target, img)" class="col-6">
@@ -49,10 +49,10 @@
 				</div>
 			</div>
 			<div>
-				<button ng-click="searchImages()" class="btn btn-success">Search Images</button>
+				<button ng-click="searchImages()" class="btn btn-info">Search Images</button>
 				<button ng-click="submitSelectedImages()" class="btn btn-primary">Select</button>
 			</div>
-			<button ng-click="trainModel()">Train</button>
+			<button ng-click="trainModel()" class="btn btn-success">Train</button>
 		</div>
 	</div>
 	
