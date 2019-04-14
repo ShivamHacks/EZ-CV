@@ -120,7 +120,7 @@ html, body {
 #progress-bar {
 	width: 90%;
 	height: 30px;
-	margin: 15px 10px;
+	margin-bottom: 10px;
 }
 #progress-bar-inside {
 	width: 0%;
