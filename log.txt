@@ -5,6 +5,7 @@ Frontend
 2. annotate
 3. get input and be able to send to server
 
+*** do CMD-SHIFT-R to reload chrome page with no cache
 
 googleimagesdownload --keywords "Starbucks Cup" --limit 20 --output_directory /Users/shivamagrawal/Desktop/ScrapedImgs
 
