@@ -195,7 +195,7 @@
 					headers: { 'Content-Type': 'application/json' },
 					data: { 'query': $scope.imageSearchQuery }
 				}).then(function successCallback(response) {
-					$scope.imagesFromSearch(response.data);
+					$scope.imagesFromSearch = response.data;
 				}, function errorCallback(response) {
 					console.log(response);
 				});
