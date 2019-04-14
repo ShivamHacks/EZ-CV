@@ -42,7 +42,7 @@ def image_search():
 	})
 
 	return jsonify(
-		images = ['http://' + server_url + 'img/' + os.path.basename(img_path) for img_path in absolute_image_paths[query]]
+		['http://' + server_url + 'img/' + os.path.basename(img_path) for img_path in absolute_image_paths[query]]
 	)
 
 # Train the model
