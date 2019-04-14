@@ -1,20 +1,29 @@
 import os
 import glob
 import json
+import shutil
 
 from flask import Flask, request, send_from_directory, jsonify
 from google_images_download import google_images_download
 
-app = Flask(__name__, static_url_path='/EZ-CV/client')
+app = Flask(__name__)
 
+"""
 server_url = '35.237.13.210:8080/'
 img_dir = '/home/sagrawa2/EZ-CV/images/'
+"""
+
+port = 3000
+server_url = 'http://localhost:3000/'
+img_dir = '/Users/shivamagrawal/Desktop/Bitcamp2019/images'
 
 # Static Files
 @app.route('/')
 def index(): return send_from_directory('../client/', 'index.html')
 @app.route('/style.css')
 def style(): return send_from_directory('../client/', 'style.css')
+@app.route('/fancy.css')
+def fancy(): return send_from_directory('../client/', 'fancy.css')
 
 # Static Image Serving
 
@@ -28,7 +37,7 @@ def image_search():
 
 	# Delete all images in the image directory
 	old_imgs = glob.glob(img_dir + "*")
-	for f in old_imgs: os.remove(f)
+	for f in old_imgs: shutil.rmtree(f)
 
 	# Download the new images
 	query = request.get_json()['query']
@@ -41,7 +50,7 @@ def image_search():
 	})
 
 	return jsonify(
-		['http://' + server_url + 'img/' + os.path.basename(img_path) for img_path in absolute_image_paths[query]]
+		[server_url + 'img/' + os.path.basename(img_path) for img_path in absolute_image_paths[query]]
 	)
 
 # Train the model
@@ -51,5 +60,5 @@ def train_model():
 	return 'all good'
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=8080)
-	print('Server hosted at: 35.237.13.210:8080')
+	app.run(host='0.0.0.0', port=port)
+	print('Server hosted at: ' + server_url)

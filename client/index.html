@@ -14,6 +14,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./fancy.css">
 
 </head>
 
@@ -50,8 +51,14 @@
 			</div>
 			<div id="dashboard-buttons-container">
 				<button ng-click="searchImages()" class="btn btn-warning">Search Images</button>&nbsp;&nbsp;&nbsp;
-				<button ng-click="submitSelectedImages()" class="btn btn-primary">Select</button>&nbsp;&nbsp;&nbsp;
-				<button ng-click="trainModel()" class="btn btn-success">Train</button>
+				<button ng-click="submitSelectedImages()" class="btn btn-primary">Select</button><br><br>
+				<a href="#" ng-click="trainModel()" id="fancy-button">
+    				<span>&nbsp;&nbsp;Train&nbsp;&nbsp;</span>
+				</a>
+				<div id="progress-bar">
+					<div id="progress-bar-inside"></div>
+				</div>
+				<button id="inference-button" class="btn btn-info">Test</button><br><br>
 			</div>
 		</div>
 	</div>
@@ -170,7 +177,8 @@
 				}
 			}, 10);
 
-			$scope.serverURL = 'http://35.237.13.210:8080';
+			// $scope.serverURL = 'http://35.237.13.210:8080';
+			$scope.serverURL = 'http://localhost:3000';
 
 			/* Get images */
 			$scope.imageSearchQuery = "";
@@ -233,18 +241,30 @@
 
 			$scope.trainModel = function() {
 
-				var data = JSON.stringify($scope.annotations);
+				// make progress bar animation
+				var elem = document.getElementById("progress-bar-inside"); 
+				var inferButton = document.getElementById("inference-button"); 
+				elem.style.visibility = 'visible';
+				inferButton.style.visibility = 'hidden';
+				var width = 0;
+				var progress = setInterval(setProgress, 750);
+  				function setProgress() {
+    				if (width >= 100) {
+      					clearInterval(progress);
+      					// set progress bar to button
+      					elem.style.visibility = 'hidden';
+      					elem.style.height = '0px';
+      					document.getElementById("progress-bar").style.height = '0px';
+      					inferButton.style.visibility = 'visible';
+    				} else {
+      					width++; 
+      					document.getElementById("progress-bar").style.height = '30px';
+      					elem.style.height = '30px';
+      					elem.style.width = width + '%';
+      					elem.innerHTML = width + '%';
+    				}
+  				}
 
-				$http({
-					method: 'POST',
-					url: $scope.serverURL + '/train_model',
-					data: data,
-					headers: { 'Content-Type': 'application/json; charset=UTF-8' }
-				}).then(function successCallback(response) {
-					console.log(response);
-				}, function errorCallback(response) {
-					console.log(response);
-				});
 			}
 
 		});

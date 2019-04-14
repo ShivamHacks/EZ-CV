@@ -115,6 +115,25 @@ html, body {
 	text-align: center;
 }
 
+/* Progress Bar */
+#progress-bar {
+	width: 90%;
+	height: 30px;
+	margin: 15px 10px;
+}
+#progress-bar-inside {
+	width: 0%;
+	height: 26px;
+	padding: 2px 0;
+	text-align: right;
+	background: blue;
+	color: white;
+}
+
+#inference-button {
+	visibility: hidden;
+}
+
 /* Custom Boostrap */
 .row.no-gutters {
 	margin-right: 0;
