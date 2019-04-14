@@ -199,9 +199,13 @@
 				} else {
 					$scope.selectedImages.push(img);
 				}
+				console.log($scope.selectedImages);
 			}
 
 			$scope.submitSelectedImages = function() {
+
+				if ($scope.selectedImages.length == 0) return;
+
 				$scope.images = $scope.selectedImages;
 				// set active images to first four images in list
 				for (var i = 0; i < $scope.num_images_in_carousel; i++) {
