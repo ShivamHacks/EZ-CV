@@ -41,9 +41,9 @@
 		<div id="dashboard">
 			<input type="text" class="form-control" placeholder="Search" ng-model="imageSearchQuery">
 			<!-- Image Grid -->
-			<div class="row no-gutters">
+			<div id="img-gallery" class="row no-gutters">
 				<div ng-repeat="img in imagesFromSearch" ng-click="selectImage(img)" class="col-6">
-					<img src="{{ img }}" class="img-fluid">
+					<img src="{{ img }}" class="img-gallery-img">
 				</div>
 			</div>
 			<button ng-click="searchImages()">Search Images</button>
@@ -184,6 +184,8 @@
 			$scope.imageSearchQuery = "";
 			$scope.imagesFromSearch = [];
 			$scope.selectedImages = [];
+
+			$scope.imagesFromSearch = $scope.images;
 
 			$scope.searchImages = function() {
 

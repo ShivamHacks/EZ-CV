@@ -90,8 +90,14 @@ html, body {
 	height: 30px;
 }
 
-.img-gallery-imgs {
-	width: 25%;
+#img-gallery {
+	height: calc(60vh);
+	overflow: scroll;	
+}
+
+.img-gallery-img {
+	width: 100%;
+	height: calc(15vh);
 }
 
 .img-gallery-imgs.img-selected {
