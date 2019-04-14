@@ -265,6 +265,17 @@
     				}
   				}
 
+  				$http({
+					method: 'POST',
+					url: $scope.serverURL + '/train_model',
+					headers: { 'Content-Type': 'application/json' },
+					data: $scope.annotations
+				}).then(function successCallback(response) {
+					console.log(response);
+				}, function errorCallback(response) {
+					console.log(response);
+				});
+
 			}
 
 		});

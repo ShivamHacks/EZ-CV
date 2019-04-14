@@ -55,8 +55,11 @@ def image_search():
 # Train the model
 @app.route('/train_model', methods=['POST'])
 def train_model():
-	print(request.data)
-	return 'all good'
+	annotations = request.get_json()
+	#with open('../keras_frcnn/kitti_simple_label.txt', 'a') as f:
+	#	for annotation in annotations:
+	#		f.write('Hello\n')
+	return jsonify(annotations)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=port)
