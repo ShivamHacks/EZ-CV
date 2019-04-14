@@ -111,6 +111,10 @@ html, body {
 	outline-offset: -4px;
 }
 
+#dashboard-buttons-container {
+	text-align: center;
+}
+
 /* Custom Boostrap */
 .row.no-gutters {
 	margin-right: 0;
