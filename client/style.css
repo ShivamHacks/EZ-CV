@@ -16,7 +16,7 @@ html, body {
 /* Image Annotation */
 
 #image-annotation-container {
-	width: calc(70vw);
+	width: calc(75vw);
 	height: calc(100vh);
 	margin: 0;
 	padding: 0;
@@ -47,6 +47,7 @@ html, body {
 	justify-content: space-around;
 	align-items: stretch;
 	align-content: stretch;
+	background: #DEE7E7;
 }
 
 #image-annotation-image-container {
@@ -82,7 +83,7 @@ html, body {
 #image-carousel-left-arrow {
 	position: absolute;
 	top: calc(90vh - 15px);
-	left: 0px;
+	left: calc(0px + 5px);
 	width: 30px;
 	height: 30px;
 }
@@ -90,7 +91,7 @@ html, body {
 #image-carousel-right-arrow {
 	position: absolute;
 	top: calc(90vh - 15px);
-	left: calc(70vw - 30px);
+	left: calc(75vw - 30px - 5px);
 	width: 30px;
 	height: 30px;
 }
