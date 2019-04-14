@@ -48,8 +48,10 @@
 					<img src="{{ img }}" class="img-gallery-img">
 				</div>
 			</div>
-			<button ng-click="searchImages()">Search Images</button>
-			<button ng-click="submitSelectedImages()">Select</button>
+			<div>
+				<button ng-click="searchImages()" class="btn btn-success">Search Images</button>
+				<button ng-click="submitSelectedImages()" class="btn btn-primary">Select</button>
+			</div>
 			<button ng-click="trainModel()">Train</button>
 		</div>
 	</div>

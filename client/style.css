@@ -30,9 +30,9 @@ html, body {
 	width: calc(25vw);
 	height: calc(100vh);
 	margin: 0;
-	padding: 0;
+	padding: 10px;
 	display: inline-block;
-	background: red;
+	background: #DEE7E7;
 }
 
 #image-annotation {
