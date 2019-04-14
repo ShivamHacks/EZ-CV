@@ -35,7 +35,7 @@ def image_search():
 	response = google_images_download.googleimagesdownload()
 	absolute_image_paths = response.download({
 		'keywords': query,
-		'limit': 20,
+		'limit': 10,
 		'output_directory': img_dir,
 		'no_directory': True
 	})
