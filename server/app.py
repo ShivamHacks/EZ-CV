@@ -34,7 +34,8 @@ def image_search():
 	absolute_image_paths = response.download({
 		'keywords': query,
 		'limit': 20,
-		'output_directory': img_dir
+		'output_directory': img_dir,
+		'no_directory': True
 	})
 
 	return 'all good'
