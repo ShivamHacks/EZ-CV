@@ -199,11 +199,11 @@
 				if ($scope.selectedImages.includes(img)) {
 					var i = $scope.selectedImages.indexOf(img);
 					$scope.selectedImages.splice(i, 1);
+					target.classList.remove('img-selected')
 				} else {
 					$scope.selectedImages.push(img);
-					target.addClass('img-selected')
+					target.classList.add('img-selected')
 				}
-				console.log($scope.selectedImages);
 			}
 
 			$scope.submitSelectedImages = function() {

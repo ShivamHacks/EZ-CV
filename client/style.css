@@ -100,9 +100,9 @@ html, body {
 	height: calc(15vh);
 }
 
-.img-gallery-imgs.img-selected {
-	outline: 1px solid black;
-  	outline-offset: -4px;
+.img-gallery-img.img-selected {
+	outline: 4px solid black;
+	outline-offset: -4px;
 }
 
 /* Custom Boostrap */
