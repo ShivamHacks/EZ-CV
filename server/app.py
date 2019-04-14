@@ -36,7 +36,7 @@ def image_search():
 
 	# Delete all images in the image directory
 	old_imgs = glob.glob(img_dir + "*")
-	for f in old_imgs: shutil.rmtree(f)
+	for f in old_imgs: os.remove(f)
 
 	# Download the new images
 	query = request.get_json()['query']
@@ -49,7 +49,7 @@ def image_search():
 	})
 
 	return jsonify(
-		[server_url + 'img/' + os.path.basename(img_path) for img_path in absolute_image_paths[query]]
+		['http://' + server_url + 'img/' + os.path.basename(img_path) for img_path in absolute_image_paths[query]]
 	)
 
 # Train the model
