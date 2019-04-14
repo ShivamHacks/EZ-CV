@@ -7,6 +7,9 @@ from google_images_download import google_images_download
 
 app = Flask(__name__, static_url_path='/EZ-CV/client')
 
+server_url = '35.237.13.210:8080/'
+img_dir = '/home/sagrawa2/EZ-CV/images/'
+
 # Static Files
 @app.route('/')
 def index(): return send_from_directory('../client/', 'index.html')
@@ -14,8 +17,6 @@ def index(): return send_from_directory('../client/', 'index.html')
 def style(): return send_from_directory('../client/', 'style.css')
 
 # Static Image Serving
-
-img_dir = '/home/sagrawa2/EZ-CV/images/'
 
 @app.route('/img/<path:path>')
 def send_image(path):
@@ -40,7 +41,7 @@ def image_search():
 	})
 
 	return jsonify(
-		images = absolute_image_paths
+		images = [server_url + os.path.basename(img_path) for img_path in absolute_image_paths]
 	)
 
 # Train the model
