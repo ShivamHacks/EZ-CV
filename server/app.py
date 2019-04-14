@@ -1,7 +1,8 @@
 import os
 import glob
+import json
 
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, send_from_directory, jsonify
 from google_images_download import google_images_download
 
 app = Flask(__name__, static_url_path='/EZ-CV/client')
@@ -38,7 +39,9 @@ def image_search():
 		'no_directory': True
 	})
 
-	return 'all good'
+	return jsonify(
+		'images': absolute_image_paths
+	)
 
 # Train the model
 @app.route('/train_model', methods=['POST'])
