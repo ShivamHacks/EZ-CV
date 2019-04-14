@@ -97,9 +97,9 @@ html, body {
 }
 
 #img-gallery {
-	height: calc(52vh);
+	height: calc(55vh);
 	overflow: scroll;	
-	margin: 10px 0 0 0;
+	margin: 0 0 10px 0;
 }
 
 .img-gallery-img {
@@ -120,7 +120,7 @@ html, body {
 #progress-bar {
 	width: 90%;
 	height: 30px;
-	margin: 10px;
+	margin: 15px 10px;
 }
 #progress-bar-inside {
 	width: 0%;
