@@ -41,7 +41,7 @@ def image_search():
 	})
 
 	return jsonify(
-		images = [server_url + os.path.basename(img_path) for img_path in absolute_image_paths]
+		images = [server_url + os.path.split(img_path)[0] for img_path in absolute_image_paths]
 	)
 
 # Train the model
