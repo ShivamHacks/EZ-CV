@@ -8,14 +8,13 @@ from google_images_download import google_images_download
 
 app = Flask(__name__)
 
-"""
+port = 8080
 server_url = '35.237.13.210:8080/'
 img_dir = '/home/sagrawa2/EZ-CV/images/'
-"""
 
-port = 3000
-server_url = 'http://localhost:3000/'
-img_dir = '/Users/shivamagrawal/Desktop/Bitcamp2019/images'
+#port = 3000
+#server_url = 'http://localhost:3000/'
+#img_dir = '/Users/shivamagrawal/Desktop/Bitcamp2019/images'
 
 # Static Files
 @app.route('/')
