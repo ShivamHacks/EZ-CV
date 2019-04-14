@@ -44,7 +44,7 @@
 			<input type="text" class="form-control" placeholder="Search" ng-model="imageSearchQuery">
 			<!-- Image Grid -->
 			<div id="img-gallery" class="row no-gutters">
-				<div ng-repeat="img in imagesFromSearch" ng-click="selectImage($event, img)" class="col-6">
+				<div ng-repeat="img in imagesFromSearch" ng-click="selectImage($event.target, img)" class="col-6">
 					<img src="{{ img }}" class="img-gallery-img">
 				</div>
 			</div>
@@ -194,15 +194,14 @@
 
 			}
 
-			$scope.selectImage = function(event, img) {
-
-				console.log(event);
+			$scope.selectImage = function(target, img) {
 
 				if ($scope.selectedImages.includes(img)) {
 					var i = $scope.selectedImages.indexOf(img);
 					$scope.selectedImages.splice(i, 1);
 				} else {
 					$scope.selectedImages.push(img);
+					target.addClass('img-selected')
 				}
 				console.log($scope.selectedImages);
 			}
