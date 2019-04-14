@@ -40,7 +40,7 @@ def image_search():
 	})
 
 	return jsonify(
-		'images': absolute_image_paths
+		images = absolute_image_paths
 	)
 
 # Train the model
