@@ -181,6 +181,10 @@
 
 				if ($scope.imageSearchQuery == "") return;
 
+				// clear any previous changes
+				$scope.imagesFromSearch = [];
+				$scope.selectedImages = [];
+
 				$http({
 					method: 'POST',
 					url: $scope.serverURL + '/image_search',
@@ -191,9 +195,6 @@
 				}, function errorCallback(response) {
 					console.log(response);
 				});
-
-				// clear any previous changes
-				$scope.selectedImages = [];
 
 			}
 
