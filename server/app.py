@@ -18,9 +18,10 @@ def style(): return send_from_directory('../client/', 'style.css')
 
 # Static Image Serving
 
-@app.route('/img/<path:path>')
-def send_image(path):
-	return send_from_directory('/../images', path)
+@app.route('/img/<img>')
+def send_image(img):
+	print('requested img: ' + img)
+	return send_from_directory('/../images', img)
 
 # Search for images
 @app.route('/image_search', methods=['POST'])
