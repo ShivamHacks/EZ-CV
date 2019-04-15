@@ -24,3 +24,6 @@ Needed to install
 
 pip3
 git
+
+
+Great idea judge from Metreon gave: use this for Where's Waldo
